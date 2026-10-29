@@ -1,0 +1,55 @@
+{
+  "dataset_path": "data/processed/dataset_augmented_5000.csv",
+  "building_id": "Office_A",
+  "total_series_steps": 4997,
+  "train_steps": 3997,
+  "test_steps": 1000,
+  "split_method": "Chronological 80/20 Holdout (No Lookahead Leakage)",
+  "models": [
+    {
+      "mae": 3.966,
+      "rmse": 6.375,
+      "mape": 57.4,
+      "smape": 41.96,
+      "model_name": "Seasonal Naive (24h)",
+      "training_time_sec": 0.0,
+      "test_steps": 1000,
+      "status": "SUCCESS"
+    },
+    {
+      "mae": 5.526,
+      "rmse": 6.568,
+      "mape": 91.11,
+      "smape": 64.6,
+      "model_name": "SARIMA",
+      "training_time_sec": 1.707,
+      "test_steps": 1000,
+      "status": "SUCCESS"
+    },
+    {
+      "mae": 5.666,
+      "rmse": 6.699,
+      "mape": 96.07,
+      "smape": 65.38,
+      "model_name": "Gradient Boosting (ML Baseline)",
+      "training_time_sec": 0.294,
+      "test_steps": 1000,
+      "status": "SUCCESS"
+    },
+    {
+      "mae": 5.574,
+      "rmse": 6.628,
+      "mape": 91.64,
+      "smape": 64.86,
+      "model_name": "LSTM (Deep Recurrent)",
+      "training_time_sec": 15.947,
+      "test_steps": 1000,
+      "status": "SUCCESS"
+    },
+    {
+      "model_name": "Prophet",
+      "status": "UNAVAILABLE",
+      "reason": "Prophet C++ toolchain (CmdStanPy) not installed on this environment; Gradient Boosting / SARIMA / LSTM utilized."
+    }
+  ]
+}
