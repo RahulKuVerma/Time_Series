@@ -1,0 +1,161 @@
+timestamp,building_id,anomaly_type,severity_factor,consumption_kWh,provenance
+2024-01-22 05:00,Warehouse,HVAC Continuous Runaway,18.5,25.48,synthetic
+2024-01-23 14:00,Office_A,High Consumption Surge,1.78,34.55,synthetic
+2024-01-23 22:00,Canteen,HVAC Continuous Runaway,18.5,22.71,synthetic
+2024-01-24 13:00,Canteen,HVAC Continuous Runaway,18.5,34.48,synthetic
+2024-01-24 18:00,Canteen,High Consumption Surge,1.43,20.88,synthetic
+2024-01-29 08:00,Canteen,High Consumption Surge,1.56,21.11,synthetic
+2024-01-29 12:00,Warehouse,High Consumption Surge,1.55,12.19,synthetic
+2024-01-29 17:00,Warehouse,High Consumption Surge,1.78,15.1,synthetic
+2024-01-30 02:00,Office_B,High Consumption Surge,1.82,9.57,synthetic
+2024-02-01 10:00,Warehouse,High Consumption Surge,1.67,25.11,synthetic
+2024-02-01 13:00,Office_A,High Consumption Surge,1.76,36.88,synthetic
+2024-02-01 14:00,Office_B,High Consumption Surge,1.68,34.61,synthetic
+2024-02-01 16:00,Canteen,HVAC Continuous Runaway,18.5,25.14,synthetic
+2024-02-06 15:00,Warehouse,High Consumption Surge,1.91,32.97,synthetic
+2024-02-06 18:00,Office_A,Power Drop / Sensor Undervoltage,0.16,1.24,synthetic
+2024-02-06 22:00,DataCenter,Power Drop / Sensor Undervoltage,0.26,11.4,synthetic
+2024-02-07 08:00,DataCenter,High Consumption Surge,1.98,86.71,synthetic
+2024-02-07 17:00,Canteen,High Consumption Surge,2.03,33.17,synthetic
+2024-02-09 13:00,Warehouse,Power Drop / Sensor Undervoltage,0.24,2.08,synthetic
+2024-02-10 03:00,Office_B,High Consumption Surge,1.55,6.38,synthetic
+2024-02-10 17:00,Office_A,High Consumption Surge,1.61,12.67,synthetic
+2024-02-11 02:00,DataCenter,Power Drop / Sensor Undervoltage,0.34,14.87,synthetic
+2024-02-12 03:00,DataCenter,Power Drop / Sensor Undervoltage,0.36,16.62,synthetic
+2024-02-12 06:00,Warehouse,Power Drop / Sensor Undervoltage,0.4,5.87,synthetic
+2024-02-13 15:00,Office_A,High Consumption Surge,1.64,33.54,synthetic
+2024-02-13 21:00,Office_B,High Consumption Surge,1.85,7.9,synthetic
+2024-02-14 18:00,Warehouse,Power Drop / Sensor Undervoltage,0.35,2.63,synthetic
+2024-02-16 19:00,Office_B,HVAC Continuous Runaway,18.5,24.27,synthetic
+2024-02-16 23:00,Office_A,Power Drop / Sensor Undervoltage,0.23,0.84,synthetic
+2024-02-18 23:00,Canteen,High Consumption Surge,1.86,9.04,synthetic
+2024-02-19 20:00,DataCenter,High Consumption Surge,1.95,133.35,synthetic
+2024-02-19 21:00,Office_A,Power Drop / Sensor Undervoltage,0.34,1.13,synthetic
+2024-02-22 04:00,Office_A,High Consumption Surge,1.57,6.71,synthetic
+2024-02-22 09:00,Office_A,HVAC Continuous Runaway,18.5,32.81,synthetic
+2024-02-24 15:00,DataCenter,Power Drop / Sensor Undervoltage,0.15,10.94,synthetic
+2024-02-26 08:00,Office_A,Power Drop / Sensor Undervoltage,0.26,1.22,synthetic
+2024-02-26 17:00,DataCenter,High Consumption Surge,1.71,128.48,synthetic
+2024-02-28 14:00,DataCenter,High Consumption Surge,1.52,116.38,synthetic
+2024-03-02 00:00,Warehouse,Power Drop / Sensor Undervoltage,0.44,2.73,synthetic
+2024-03-02 08:00,Office_A,HVAC Continuous Runaway,18.5,22.4,synthetic
+2024-03-04 10:00,Office_A,High Consumption Surge,2.08,34.39,synthetic
+2024-03-05 05:00,DataCenter,Power Drop / Sensor Undervoltage,0.37,17.3,synthetic
+2024-03-06 03:00,Office_B,High Consumption Surge,1.97,8.08,synthetic
+2024-03-06 15:00,Canteen,Power Drop / Sensor Undervoltage,0.35,2.36,synthetic
+2024-03-07 03:00,Office_A,Power Drop / Sensor Undervoltage,0.15,0.5,synthetic
+2024-03-07 12:00,DataCenter,High Consumption Surge,1.71,125.6,synthetic
+2024-03-11 06:00,DataCenter,High Consumption Surge,1.84,79.48,synthetic
+2024-03-11 08:00,Office_B,HVAC Continuous Runaway,18.5,23.87,synthetic
+2024-03-13 01:00,Warehouse,Power Drop / Sensor Undervoltage,0.29,2.37,synthetic
+2024-03-14 07:00,Warehouse,High Consumption Surge,1.69,23.87,synthetic
+2024-03-16 11:00,DataCenter,High Consumption Surge,1.72,120.29,synthetic
+2024-03-17 10:00,Warehouse,High Consumption Surge,1.95,23.58,synthetic
+2024-03-17 20:00,Warehouse,Power Drop / Sensor Undervoltage,0.36,3.08,synthetic
+2024-03-19 00:00,Office_A,High Consumption Surge,1.65,5.44,synthetic
+2024-03-20 09:00,Canteen,High Consumption Surge,1.84,26.43,synthetic
+2024-03-22 02:00,DataCenter,High Consumption Surge,1.74,75.54,synthetic
+2024-03-22 13:00,Office_A,High Consumption Surge,2.07,43.93,synthetic
+2024-03-23 17:00,Canteen,High Consumption Surge,1.43,13.03,synthetic
+2024-03-24 00:00,Office_A,HVAC Continuous Runaway,18.5,21.74,synthetic
+2024-03-25 12:00,Office_B,HVAC Continuous Runaway,18.5,28.61,synthetic
+2024-03-27 23:00,Office_A,Power Drop / Sensor Undervoltage,0.42,2.3,synthetic
+2024-03-28 12:00,Canteen,HVAC Continuous Runaway,18.5,36.63,synthetic
+2024-03-29 03:00,Canteen,HVAC Continuous Runaway,18.5,20.86,synthetic
+2024-04-01 01:00,Canteen,Power Drop / Sensor Undervoltage,0.26,1.05,synthetic
+2024-04-01 12:00,DataCenter,HVAC Continuous Runaway,18.5,89.08,synthetic
+2024-04-01 15:00,Warehouse,High Consumption Surge,2.08,32.31,synthetic
+2024-04-01 22:00,DataCenter,Power Drop / Sensor Undervoltage,0.27,12.3,synthetic
+2024-04-03 14:00,DataCenter,Power Drop / Sensor Undervoltage,0.42,31.76,synthetic
+2024-04-04 16:00,Office_A,Power Drop / Sensor Undervoltage,0.23,4.58,synthetic
+2024-04-06 18:00,Office_A,Power Drop / Sensor Undervoltage,0.29,2.29,synthetic
+2024-04-07 02:00,Canteen,High Consumption Surge,1.63,5.68,synthetic
+2024-04-09 14:00,Canteen,High Consumption Surge,1.59,27.55,synthetic
+2024-04-09 15:00,DataCenter,High Consumption Surge,1.69,132.71,synthetic
+2024-04-11 20:00,Warehouse,Power Drop / Sensor Undervoltage,0.2,1.86,synthetic
+2024-04-14 02:00,Office_B,Power Drop / Sensor Undervoltage,0.26,0.89,synthetic
+2024-04-14 17:00,Office_B,High Consumption Surge,1.76,19.89,synthetic
+2024-04-15 09:00,Warehouse,High Consumption Surge,1.54,27.51,synthetic
+2024-04-15 17:00,Office_A,High Consumption Surge,1.42,27.46,synthetic
+2024-04-15 21:00,DataCenter,High Consumption Surge,1.48,70.22,synthetic
+2024-04-16 14:00,Office_B,High Consumption Surge,1.47,32.1,synthetic
+2024-04-18 13:00,Canteen,Power Drop / Sensor Undervoltage,0.3,5.42,synthetic
+2024-04-22 08:00,DataCenter,High Consumption Surge,1.88,84.6,synthetic
+2024-04-22 15:00,Office_B,High Consumption Surge,1.82,39.74,synthetic
+2024-04-22 21:00,Warehouse,High Consumption Surge,1.92,14.15,synthetic
+2024-04-25 08:00,Office_B,High Consumption Surge,1.43,9.15,synthetic
+2024-04-26 00:00,Warehouse,Power Drop / Sensor Undervoltage,0.29,1.81,synthetic
+2024-04-26 14:00,Office_B,High Consumption Surge,1.5,33.9,synthetic
+2024-04-30 15:00,Canteen,High Consumption Surge,1.5,10.72,synthetic
+2024-05-02 16:00,Warehouse,High Consumption Surge,1.73,28.53,synthetic
+2024-05-04 15:00,DataCenter,High Consumption Surge,1.58,120.44,synthetic
+2024-05-07 18:00,DataCenter,High Consumption Surge,1.83,139.19,synthetic
+2024-05-09 18:00,Warehouse,High Consumption Surge,1.52,11.71,synthetic
+2024-05-10 11:00,DataCenter,High Consumption Surge,1.48,104.23,synthetic
+2024-05-12 09:00,Office_A,HVAC Continuous Runaway,18.5,24.59,synthetic
+2024-05-12 22:00,Canteen,High Consumption Surge,1.8,7.46,synthetic
+2024-05-14 01:00,Office_A,Power Drop / Sensor Undervoltage,0.44,2.08,synthetic
+2024-05-14 21:00,Office_A,Power Drop / Sensor Undervoltage,0.16,0.92,synthetic
+2024-05-16 18:00,Office_A,HVAC Continuous Runaway,18.5,24.85,synthetic
+2024-05-16 21:00,Canteen,HVAC Continuous Runaway,18.5,22.5,synthetic
+2024-05-17 03:00,DataCenter,High Consumption Surge,1.74,77.7,synthetic
+2024-05-17 14:00,Office_A,High Consumption Surge,1.6,33.04,synthetic
+2024-05-19 12:00,Office_B,High Consumption Surge,1.88,22.19,synthetic
+2024-05-20 05:00,Canteen,High Consumption Surge,1.48,5.04,synthetic
+2024-05-21 18:00,Office_A,High Consumption Surge,1.46,10.4,synthetic
+2024-05-22 06:00,Warehouse,High Consumption Surge,1.47,25.07,synthetic
+2024-05-23 14:00,DataCenter,Power Drop / Sensor Undervoltage,0.17,12.64,synthetic
+2024-05-26 14:00,Office_B,High Consumption Surge,2.02,29.74,synthetic
+2024-05-26 19:00,Office_B,High Consumption Surge,2.05,17.06,synthetic
+2024-05-27 19:00,Office_A,HVAC Continuous Runaway,18.5,25.63,synthetic
+2024-05-30 02:00,Office_A,High Consumption Surge,1.59,6.77,synthetic
+2024-05-30 12:00,Office_A,Power Drop / Sensor Undervoltage,0.28,5.68,synthetic
+2024-05-31 22:00,DataCenter,Power Drop / Sensor Undervoltage,0.34,15.06,synthetic
+2024-06-01 04:00,Office_A,HVAC Continuous Runaway,18.5,22.77,synthetic
+2024-06-02 06:00,Office_B,High Consumption Surge,2.0,11.44,synthetic
+2024-06-02 11:00,Office_B,HVAC Continuous Runaway,18.5,31.18,synthetic
+2024-06-02 18:00,Canteen,HVAC Continuous Runaway,18.5,27.92,synthetic
+2024-06-04 17:00,Office_A,HVAC Continuous Runaway,18.5,36.41,synthetic
+2024-06-06 02:00,Canteen,HVAC Continuous Runaway,18.5,20.65,synthetic
+2024-06-06 04:00,Office_A,High Consumption Surge,1.42,5.22,synthetic
+2024-06-09 04:00,Warehouse,High Consumption Surge,1.54,10.14,synthetic
+2024-06-09 15:00,Canteen,Power Drop / Sensor Undervoltage,0.38,1.27,synthetic
+2024-06-09 17:00,Office_A,HVAC Continuous Runaway,18.5,27.7,synthetic
+2024-06-09 20:00,Canteen,High Consumption Surge,1.86,10.47,synthetic
+2024-06-10 01:00,Canteen,High Consumption Surge,1.62,3.95,synthetic
+2024-06-11 12:00,Canteen,Power Drop / Sensor Undervoltage,0.37,6.56,synthetic
+2024-06-12 07:00,Warehouse,High Consumption Surge,1.42,25.38,synthetic
+2024-06-13 19:00,Canteen,Power Drop / Sensor Undervoltage,0.4,6.47,synthetic
+2024-06-13 23:00,Warehouse,Power Drop / Sensor Undervoltage,0.44,3.48,synthetic
+2024-06-15 09:00,Office_B,Power Drop / Sensor Undervoltage,0.25,1.88,synthetic
+2024-06-15 17:00,DataCenter,HVAC Continuous Runaway,18.5,95.73,synthetic
+2024-06-16 17:00,Canteen,High Consumption Surge,1.4,10.31,synthetic
+2024-06-17 03:00,Canteen,Power Drop / Sensor Undervoltage,0.43,0.89,synthetic
+2024-06-18 09:00,Canteen,Power Drop / Sensor Undervoltage,0.23,3.02,synthetic
+2024-06-20 17:00,DataCenter,High Consumption Surge,1.74,126.75,synthetic
+2024-06-21 22:00,Canteen,High Consumption Surge,1.92,8.56,synthetic
+2024-06-22 02:00,Warehouse,High Consumption Surge,1.83,12.38,synthetic
+2024-06-23 19:00,Canteen,Power Drop / Sensor Undervoltage,0.37,3.18,synthetic
+2024-06-27 06:00,Office_B,Power Drop / Sensor Undervoltage,0.32,1.28,synthetic
+2024-07-01 05:00,Office_B,High Consumption Surge,1.84,7.27,synthetic
+2024-07-02 12:00,Warehouse,HVAC Continuous Runaway,18.5,27.1,synthetic
+2024-07-03 14:00,Canteen,High Consumption Surge,1.45,24.89,synthetic
+2024-07-05 18:00,Office_A,High Consumption Surge,1.66,9.08,synthetic
+2024-07-06 09:00,Office_A,HVAC Continuous Runaway,18.5,24.46,synthetic
+2024-07-06 18:00,DataCenter,HVAC Continuous Runaway,18.5,96.12,synthetic
+2024-07-10 10:00,Warehouse,High Consumption Surge,1.46,25.9,synthetic
+2024-07-10 17:00,DataCenter,High Consumption Surge,1.62,121.44,synthetic
+2024-07-12 17:00,Warehouse,High Consumption Surge,2.01,15.76,synthetic
+2024-07-13 09:00,Canteen,Power Drop / Sensor Undervoltage,0.36,2.32,synthetic
+2024-07-15 08:00,Office_A,Power Drop / Sensor Undervoltage,0.34,1.19,synthetic
+2024-07-15 09:00,Office_B,HVAC Continuous Runaway,18.5,33.7,synthetic
+2024-07-16 02:00,Canteen,HVAC Continuous Runaway,18.5,23.4,synthetic
+2024-07-19 01:00,DataCenter,Power Drop / Sensor Undervoltage,0.16,7.97,synthetic
+2024-07-20 02:00,DataCenter,High Consumption Surge,1.7,76.63,synthetic
+2024-07-21 05:00,Office_B,High Consumption Surge,1.78,8.01,synthetic
+2024-07-22 16:00,Office_B,High Consumption Surge,1.41,28.8,synthetic
+2024-07-23 01:00,Office_A,High Consumption Surge,1.84,8.32,synthetic
+2024-07-23 11:00,Office_A,HVAC Continuous Runaway,18.5,35.79,synthetic
+2024-07-24 09:00,Warehouse,Power Drop / Sensor Undervoltage,0.18,2.74,synthetic
+2024-07-26 06:00,Warehouse,Power Drop / Sensor Undervoltage,0.24,3.3,synthetic
+2024-07-26 23:00,DataCenter,Power Drop / Sensor Undervoltage,0.38,17.68,synthetic

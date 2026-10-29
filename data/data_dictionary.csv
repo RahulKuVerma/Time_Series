@@ -1,0 +1,7 @@
+column_name,data_type,sample_value_1,sample_value_2,sample_value_3,nullable,description_fill_in
+timestamp,datetime (YYYY-MM-DD HH:MM),2024-01-01 01:00,2024-01-01 02:00,2024-01-01 03:00,No,"ISO-like local timestamp recording the observation period start at hourly cadence (naive local time, no timezone offset encoded)."
+building_id,string (categorical),Office_A,Warehouse,DataCenter,No,"Anonymised identifier representing the metering facility / building type (Office_A, Office_B, Warehouse, DataCenter, Canteen) to prevent individual occupancy exposure."
+consumption_kWh,float64 (kWh),8.65,10.82,26.72,No,"Target forecast variable representing active electric energy consumption in kilowatt-hours (kWh) consumed over the preceding recording interval."
+temperature_C,float64 (degrees Celsius),28.3,26.8,30.0,No,"Ambient external dry-bulb air temperature in degrees Celsius (C) measured at local campus weather station, serving as exogenous thermal demand driver."
+humidity_pct,float64 (percentage 0-100),43.4,45.3,45.7,No,"Relative humidity expressed as a percentage [0.0 - 100.0%], driving HVAC latent cooling and ventilation load requirements."
+day_type,string (categorical),Weekday,Weekend,Holiday,No,"Calendar classification indicating operating regimen: Weekday (Mon-Fri regular schedule), Weekend (Sat-Sun low occupancy), or Holiday (public holiday schedule)."
