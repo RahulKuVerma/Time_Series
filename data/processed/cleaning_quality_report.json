@@ -1,0 +1,52 @@
+{
+  "provenance": {
+    "original_supplied_rows": 500,
+    "synthetic_generated_rows": 4500,
+    "total_rows": 5000,
+    "note": "Canonical schema strictly preserved. Synthetic rows generated with calibrated building diurnal profiles."
+  },
+  "seed_quality": {
+    "source_name": "original_supplied_seed",
+    "initial_rows": 500,
+    "actions_logged": [],
+    "validation_errors": [],
+    "missing_values_imputed": 0,
+    "range_violations_corrected": 0,
+    "duplicates_removed": 0,
+    "final_rows": 500,
+    "rows_retained_pct": 100.0,
+    "date_range_start": "2024-01-01 01:00",
+    "date_range_end": "2024-01-21 20:00",
+    "unique_buildings": [
+      "Canteen",
+      "DataCenter",
+      "Office_A",
+      "Office_B",
+      "Warehouse"
+    ],
+    "mean_consumption_kWh": 21.25,
+    "peak_consumption_kWh": 75.84
+  },
+  "augmented_quality": {
+    "source_name": "seed_plus_synthetic_5000",
+    "initial_rows": 5000,
+    "actions_logged": [],
+    "validation_errors": [],
+    "missing_values_imputed": 0,
+    "range_violations_corrected": 0,
+    "duplicates_removed": 0,
+    "final_rows": 5000,
+    "rows_retained_pct": 100.0,
+    "date_range_start": "2024-01-01 01:00",
+    "date_range_end": "2024-07-27 08:00",
+    "unique_buildings": [
+      "Canteen",
+      "DataCenter",
+      "Office_A",
+      "Office_B",
+      "Warehouse"
+    ],
+    "mean_consumption_kWh": 19.19,
+    "peak_consumption_kWh": 139.19
+  }
+}
