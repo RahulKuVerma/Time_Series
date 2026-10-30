@@ -42,7 +42,7 @@ export function TimeSeriesChart({
 
   if (points.length === 0) {
     return (
-      <div style={{ padding: 40, textAlign: 'center', color: '#6b7280' }}>
+      <div style={{ padding: 40, textAlign: 'center', color: 'var(--text-muted)' }}>
         No time-series data available to plot.
       </div>
     );
@@ -169,18 +169,18 @@ export function TimeSeriesChart({
   return (
     <div style={{ position: 'relative', width: '100%', userSelect: 'none' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
-        <h3 style={{ fontSize: '1rem', color: '#e5e7eb' }}>{title}</h3>
+        <h3 style={{ fontSize: '1rem', color: 'var(--text-primary)' }}>{title}</h3>
         <div style={{ display: 'flex', gap: 16, fontSize: '0.8rem' }}>
-          <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#9ca3af' }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--text-secondary)' }}>
             <span style={{ width: 12, height: 3, background: '#3b82f6', borderRadius: 2 }}></span>
             Historical (Observed)
           </span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#10b981' }}>
-            <span style={{ width: 12, height: 3, background: '#10b981', borderRadius: 2 }}></span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--accent-emerald)' }}>
+            <span style={{ width: 12, height: 3, background: 'var(--accent-emerald)', borderRadius: 2 }}></span>
             Forecast Target
           </span>
           {ribbonPath && (
-            <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#059669' }}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--accent-emerald)' }}>
               <span style={{ width: 12, height: 8, background: 'rgba(16, 185, 129, 0.2)', border: '1px solid rgba(16, 185, 129, 0.4)', borderRadius: 2 }}></span>
               95% Confidence Band
             </span>
@@ -198,8 +198,8 @@ export function TimeSeriesChart({
           const y = getY(val);
           return (
             <g key={i}>
-              <line x1={paddingLeft} y1={y} x2={width - paddingRight} y2={y} stroke="rgba(255,255,255,0.06)" strokeDasharray="3 3" />
-              <text x={paddingLeft - 8} y={y + 4} fill="#6b7280" fontSize="11" textAnchor="end" fontFamily="monospace">
+              <line x1={paddingLeft} y1={y} x2={width - paddingRight} y2={y} stroke="var(--chart-grid)" strokeDasharray="3 3" />
+              <text x={paddingLeft - 8} y={y + 4} fill="var(--text-muted)" fontSize="11" textAnchor="end" fontFamily="monospace">
                 {val.toFixed(1)}
               </text>
             </g>
@@ -213,8 +213,8 @@ export function TimeSeriesChart({
           const timeShort = p ? p.timestamp.slice(5) : '';
           return (
             <g key={idx}>
-              <line x1={x} y1={paddingTop + innerHeight} x2={x} y2={paddingTop + innerHeight + 5} stroke="rgba(255,255,255,0.2)" />
-              <text x={x} y={paddingTop + innerHeight + 18} fill="#9ca3af" fontSize="10" textAnchor="middle" fontFamily="sans-serif">
+              <line x1={x} y1={paddingTop + innerHeight} x2={x} y2={paddingTop + innerHeight + 5} stroke="var(--border-subtle)" />
+              <text x={x} y={paddingTop + innerHeight + 18} fill="var(--text-secondary)" fontSize="10" textAnchor="middle" fontFamily="sans-serif">
                 {timeShort}
               </text>
             </g>
@@ -233,7 +233,7 @@ export function TimeSeriesChart({
 
         {/* Forecast Line */}
         {predPath && (
-          <path d={predPath} fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d={predPath} fill="none" stroke="var(--accent-emerald)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
         )}
 
         {/* Forecast Boundary Separator */}
@@ -243,7 +243,7 @@ export function TimeSeriesChart({
             y1={paddingTop}
             x2={getX(historical.length - 1)}
             y2={paddingTop + innerHeight}
-            stroke="#f59e0b"
+            stroke="var(--accent-amber)"
             strokeWidth="1.5"
             strokeDasharray="4 4"
           />
@@ -256,7 +256,7 @@ export function TimeSeriesChart({
             y1={paddingTop}
             x2={getX(hoverIndex)}
             y2={paddingTop + innerHeight}
-            stroke="rgba(255, 255, 255, 0.4)"
+            stroke="var(--chart-cursor)"
             strokeWidth="1"
           />
         )}
@@ -287,9 +287,9 @@ export function TimeSeriesChart({
           top: 10,
           left: Math.min(Math.max(60, (getX(hoverIndex) / width) * 100), 80) + '%',
           transform: 'translateX(-50%)',
-          background: 'rgba(17, 24, 39, 0.95)',
-          border: '1px solid rgba(255,255,255,0.15)',
-          boxShadow: '0 8px 24px rgba(0,0,0,0.6)',
+          background: 'var(--tooltip-bg)',
+          border: '1px solid var(--border-subtle)',
+          boxShadow: 'var(--shadow-card)',
           borderRadius: 8,
           padding: '8px 14px',
           fontSize: '0.8rem',
@@ -297,19 +297,19 @@ export function TimeSeriesChart({
           zIndex: 20,
           minWidth: 160
         }}>
-          <div style={{ color: '#9ca3af', marginBottom: 4 }}>{activePoint.timestamp}</div>
+          <div style={{ color: 'var(--text-secondary)', marginBottom: 4 }}>{activePoint.timestamp}</div>
           {activePoint.actual !== null && (
-            <div style={{ color: '#60a5fa', fontWeight: 'bold' }}>
+            <div style={{ color: '#3b82f6', fontWeight: 'bold' }}>
               Actual: {activePoint.actual.toFixed(2)} kWh
             </div>
           )}
           {activePoint.predicted !== null && (
-            <div style={{ color: '#34d399', fontWeight: 'bold' }}>
+            <div style={{ color: 'var(--accent-emerald)', fontWeight: 'bold' }}>
               Forecast: {activePoint.predicted.toFixed(2)} kWh
             </div>
           )}
           {activePoint.lower !== null && activePoint.upper !== null && (
-            <div style={{ color: '#9ca3af', fontSize: '0.72rem', marginTop: 2 }}>
+            <div style={{ color: 'var(--text-muted)', fontSize: '0.72rem', marginTop: 2 }}>
               95% Band: [{activePoint.lower.toFixed(1)} - {activePoint.upper.toFixed(1)}]
             </div>
           )}
@@ -331,7 +331,7 @@ export function DiurnalBarChart({ data = {}, buildings = [] }) {
       <div style={{ minWidth: 600, display: 'flex', flexDirection: 'column', gap: 12 }}>
         <div style={{ display: 'flex', gap: 16, fontSize: '0.8rem', flexWrap: 'wrap' }}>
           {buildings.map((b, i) => (
-            <span key={b} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <span key={b} style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--text-secondary)' }}>
               <span style={{ width: 10, height: 10, borderRadius: 2, background: palette[i % palette.length] }}></span>
               {b}
             </span>
@@ -361,7 +361,7 @@ export function DiurnalBarChart({ data = {}, buildings = [] }) {
                     );
                   })}
                 </div>
-                <span style={{ fontSize: '0.65rem', color: '#9ca3af', marginTop: 4 }}>{h}</span>
+                <span style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', marginTop: 4 }}>{h}</span>
               </div>
             );
           })}
