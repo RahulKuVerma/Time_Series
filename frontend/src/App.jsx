@@ -21,9 +21,11 @@ import {
   TrendingUp,
   UploadCloud,
   Zap,
-  AlertTriangle
+  AlertTriangle,
+  Award,
+  Target
 } from 'lucide-react';
-import { TimeSeriesChart, DiurnalBarChart } from './components/InteractiveChart';
+import { TimeSeriesChart, DiurnalBarChart, MultiModelEvaluationChart } from './components/InteractiveChart';
 
 const API_BASE = ''; // Uses Vite proxy to http://localhost:8000
 
@@ -290,87 +292,303 @@ export default function App() {
           {/* TAB 1: OVERVIEW */}
           {activeTab === 'overview' && (
             <div>
+              {/* 1. Overall Cumulative KPI Cards Produced by Trained Data */}
               <div className="card-grid">
                 <div className="glass-card accent-glow">
                   <div className="kpi-title">
-                    <span>Active Dataset Rows</span>
+                    <span>Trained Dataset Timesteps</span>
                     <Database size={16} color="var(--accent-emerald)" />
                   </div>
                   <div className="kpi-value">{summary?.total_rows?.toLocaleString() || '5,000'}</div>
                   <div className="kpi-sub">
-                    <span>6 Canonical Columns (Verified)</span>
+                    <span>3,997 Train Steps • 1,000 Test Steps</span>
                   </div>
                 </div>
 
                 <div className="glass-card">
                   <div className="kpi-title">
-                    <span>Facilities Monitored</span>
-                    <Layers size={16} color="var(--accent-blue)" />
-                  </div>
-                  <div className="kpi-value">{summary?.building_count || 5} Buildings</div>
-                  <div className="kpi-sub">
-                    <span>Anonymized: Office, DataCenter, Warehouse...</span>
-                  </div>
-                </div>
-
-                <div className="glass-card">
-                  <div className="kpi-title">
-                    <span>Average Hourly Load</span>
+                    <span>Cumulative Energy Evaluated</span>
                     <Zap size={16} color="var(--accent-amber)" />
                   </div>
-                  <div className="kpi-value">{summary?.mean_consumption_kWh || '21.2'} <span style={{ fontSize: '1rem' }}>kWh</span></div>
+                  <div className="kpi-value">
+                    {benchmark?.cumulative_results?.cumulative_test_energy_kWh
+                      ? `${benchmark.cumulative_results.cumulative_test_energy_kWh.toLocaleString()} kWh`
+                      : '8,634 kWh'}
+                  </div>
                   <div className="kpi-sub">
-                    <span>Peak Observed: {summary?.peak_consumption_kWh || '75.8'} kWh</span>
+                    <span>36,765 kWh Trained • 45,399 kWh Total Monitored</span>
                   </div>
                 </div>
 
                 <div className="glass-card">
                   <div className="kpi-title">
-                    <span>Data Completeness</span>
-                    <CheckCircle2 size={16} color="var(--accent-cyan)" />
+                    <span>Out-of-Sample Inferences</span>
+                    <Target size={16} color="var(--accent-cyan)" />
                   </div>
-                  <div className="kpi-value">{quality?.data_completeness_pct || '100'}%</div>
+                  <div className="kpi-value">
+                    {benchmark?.cumulative_results?.total_inferences_evaluated?.toLocaleString() || '4,000'}
+                  </div>
                   <div className="kpi-sub">
-                    <span>{quality?.labeled_anomalies_count || 160} Isolated Anomalies (3.56%)</span>
+                    <span>1,000 Evaluation Hours × 4 Model Architectures</span>
+                  </div>
+                </div>
+
+                <div className="glass-card">
+                  <div className="kpi-title">
+                    <span>Champion Benchmark MAE</span>
+                    <Award size={16} color="var(--accent-blue)" />
+                  </div>
+                  <div className="kpi-value">
+                    {benchmark?.cumulative_results?.best_mae_kWh || '3.97'} <span style={{ fontSize: '1rem' }}>kWh</span>
+                  </div>
+                  <div className="kpi-sub">
+                    <span>sMAPE 41.96% • Seasonal Naive (24h) Baseline</span>
                   </div>
                 </div>
               </div>
 
-              {/* Service & Model Frameworks Status */}
+              {/* 2. Interactive Multi-Model Test Evaluation Graph */}
               <div className="glass-card" style={{ marginBottom: 28 }}>
-                <h3 style={{ fontSize: '1.05rem', marginBottom: 14 }}>Production Framework Readiness</h3>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 14 }}>
-                  <div style={{ background: 'var(--bg-surface-elevated)', padding: '14px 18px', borderRadius: 10 }}>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Deep Learning Engine</div>
-                    <div style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--accent-emerald)', marginTop: 4 }}>
-                      PyTorch LSTM (Available)
+                <MultiModelEvaluationChart
+                  timeline={benchmark?.evaluation_timeline || []}
+                  models={benchmark?.models || []}
+                  cumulativeStats={benchmark?.cumulative_results || null}
+                  height={340}
+                />
+              </div>
+
+              {/* 3. Cumulative Results Produced by Trained Models */}
+              <div className="glass-card" style={{ marginBottom: 28 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+                  <div>
+                    <h3 style={{ fontSize: '1.1rem', color: 'var(--text-primary)' }}>
+                      Cumulative Results Produced by Trained Models
+                    </h3>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginTop: 3 }}>
+                      Chronological holdout evaluation on 1,000 future out-of-sample timesteps with zero lookahead leakage.
+                    </p>
+                  </div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                    Evaluated Facility: <code style={{ color: 'var(--accent-emerald)', background: 'var(--bg-code)', padding: '3px 8px', borderRadius: 4, fontWeight: 600 }}>Office_A</code>
+                  </div>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 16 }}>
+                  {/* LSTM Card */}
+                  <div style={{
+                    background: 'var(--bg-surface-elevated)',
+                    border: '1px solid var(--border-subtle)',
+                    padding: '16px 18px',
+                    borderRadius: 12,
+                    position: 'relative'
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#10b981' }}></span>
+                        <span style={{ fontWeight: 600, fontSize: '0.92rem', color: 'var(--text-primary)' }}>PyTorch LSTM</span>
+                      </div>
+                      <span style={{
+                        background: 'rgba(16, 185, 129, 0.15)',
+                        color: '#10b981',
+                        fontSize: '0.72rem',
+                        padding: '2px 8px',
+                        borderRadius: 4,
+                        fontWeight: 600
+                      }}>
+                        Deep Recurrent
+                      </span>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginTop: 12 }}>
+                      <div>
+                        <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>MAE (Mean Abs Error)</div>
+                        <div style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)', marginTop: 2 }}>
+                          {benchmark?.models?.find(m => m.model_name.includes('LSTM'))?.mae?.toFixed(3) || '5.574'} <span style={{ fontSize: '0.75rem', fontWeight: 500 }}>kWh</span>
+                        </div>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>RMSE</div>
+                        <div style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)', marginTop: 2 }}>
+                          {benchmark?.models?.find(m => m.model_name.includes('LSTM'))?.rmse?.toFixed(3) || '6.628'} <span style={{ fontSize: '0.75rem', fontWeight: 500 }}>kWh</span>
+                        </div>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>sMAPE Error</div>
+                        <div style={{ fontSize: '0.92rem', fontWeight: 600, color: '#10b981', marginTop: 2 }}>
+                          {benchmark?.models?.find(m => m.model_name.includes('LSTM'))?.smape?.toFixed(1) || '64.9'}%
+                        </div>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>Training Latency</div>
+                        <div style={{ fontSize: '0.92rem', fontWeight: 600, color: 'var(--text-secondary)', marginTop: 2 }}>
+                          {benchmark?.models?.find(m => m.model_name.includes('LSTM'))?.training_time_sec !== undefined ? `${benchmark.models.find(m => m.model_name.includes('LSTM')).training_time_sec}s` : '7.94s'}
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  <div style={{ background: 'var(--bg-surface-elevated)', padding: '14px 18px', borderRadius: 10 }}>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Econometric Engine</div>
-                    <div style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--accent-blue)', marginTop: 4 }}>
-                      Statsmodels SARIMA (Active)
+                  {/* SARIMA Card */}
+                  <div style={{
+                    background: 'var(--bg-surface-elevated)',
+                    border: '1px solid var(--border-subtle)',
+                    padding: '16px 18px',
+                    borderRadius: 12,
+                    position: 'relative'
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#8b5cf6' }}></span>
+                        <span style={{ fontWeight: 600, fontSize: '0.92rem', color: 'var(--text-primary)' }}>Statsmodels SARIMA</span>
+                      </div>
+                      <span style={{
+                        background: 'rgba(139, 92, 246, 0.15)',
+                        color: '#8b5cf6',
+                        fontSize: '0.72rem',
+                        padding: '2px 8px',
+                        borderRadius: 4,
+                        fontWeight: 600
+                      }}>
+                        Econometric
+                      </span>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginTop: 12 }}>
+                      <div>
+                        <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>MAE (Mean Abs Error)</div>
+                        <div style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)', marginTop: 2 }}>
+                          {benchmark?.models?.find(m => m.model_name === 'SARIMA')?.mae?.toFixed(3) || '5.526'} <span style={{ fontSize: '0.75rem', fontWeight: 500 }}>kWh</span>
+                        </div>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>RMSE</div>
+                        <div style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)', marginTop: 2 }}>
+                          {benchmark?.models?.find(m => m.model_name === 'SARIMA')?.rmse?.toFixed(3) || '6.568'} <span style={{ fontSize: '0.75rem', fontWeight: 500 }}>kWh</span>
+                        </div>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>sMAPE Error</div>
+                        <div style={{ fontSize: '0.92rem', fontWeight: 600, color: '#8b5cf6', marginTop: 2 }}>
+                          {benchmark?.models?.find(m => m.model_name === 'SARIMA')?.smape?.toFixed(1) || '64.6'}%
+                        </div>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>Training Latency</div>
+                        <div style={{ fontSize: '0.92rem', fontWeight: 600, color: 'var(--text-secondary)', marginTop: 2 }}>
+                          {benchmark?.models?.find(m => m.model_name === 'SARIMA')?.training_time_sec !== undefined ? `${benchmark.models.find(m => m.model_name === 'SARIMA').training_time_sec}s` : '0.90s'}
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  <div style={{ background: 'var(--bg-surface-elevated)', padding: '14px 18px', borderRadius: 10 }}>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>ML Tree Baseline</div>
-                    <div style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--accent-amber)', marginTop: 4 }}>
-                      HistGradientBoosting (Active)
+                  {/* Gradient Boosting Card */}
+                  <div style={{
+                    background: 'var(--bg-surface-elevated)',
+                    border: '1px solid var(--border-subtle)',
+                    padding: '16px 18px',
+                    borderRadius: 12,
+                    position: 'relative'
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#f59e0b' }}></span>
+                        <span style={{ fontWeight: 600, fontSize: '0.92rem', color: 'var(--text-primary)' }}>HistGradientBoosting</span>
+                      </div>
+                      <span style={{
+                        background: 'rgba(245, 158, 11, 0.15)',
+                        color: '#f59e0b',
+                        fontSize: '0.72rem',
+                        padding: '2px 8px',
+                        borderRadius: 4,
+                        fontWeight: 600
+                      }}>
+                        ML Lag Regressor
+                      </span>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginTop: 12 }}>
+                      <div>
+                        <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>MAE (Mean Abs Error)</div>
+                        <div style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)', marginTop: 2 }}>
+                          {benchmark?.models?.find(m => m.model_name.includes('Gradient'))?.mae?.toFixed(3) || '5.666'} <span style={{ fontSize: '0.75rem', fontWeight: 500 }}>kWh</span>
+                        </div>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>RMSE</div>
+                        <div style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)', marginTop: 2 }}>
+                          {benchmark?.models?.find(m => m.model_name.includes('Gradient'))?.rmse?.toFixed(3) || '6.699'} <span style={{ fontSize: '0.75rem', fontWeight: 500 }}>kWh</span>
+                        </div>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>sMAPE Error</div>
+                        <div style={{ fontSize: '0.92rem', fontWeight: 600, color: '#f59e0b', marginTop: 2 }}>
+                          {benchmark?.models?.find(m => m.model_name.includes('Gradient'))?.smape?.toFixed(1) || '65.4'}%
+                        </div>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>Training Latency</div>
+                        <div style={{ fontSize: '0.92rem', fontWeight: 600, color: 'var(--text-secondary)', marginTop: 2 }}>
+                          {benchmark?.models?.find(m => m.model_name.includes('Gradient'))?.training_time_sec !== undefined ? `${benchmark.models.find(m => m.model_name.includes('Gradient')).training_time_sec}s` : '0.23s'}
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  <div style={{ background: 'var(--bg-surface-elevated)', padding: '14px 18px', borderRadius: 10 }}>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Database Persistence</div>
-                    <div style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--accent-purple)', marginTop: 4 }}>
-                      SQLite / PostgreSQL Ready
+                  {/* Seasonal Naive Card */}
+                  <div style={{
+                    background: 'var(--bg-surface-elevated)',
+                    border: '1px solid var(--border-subtle)',
+                    padding: '16px 18px',
+                    borderRadius: 12,
+                    position: 'relative'
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#06b6d4' }}></span>
+                        <span style={{ fontWeight: 600, fontSize: '0.92rem', color: 'var(--text-primary)' }}>Seasonal Naive (24h)</span>
+                      </div>
+                      <span style={{
+                        background: 'rgba(6, 182, 212, 0.15)',
+                        color: '#06b6d4',
+                        fontSize: '0.72rem',
+                        padding: '2px 8px',
+                        borderRadius: 4,
+                        fontWeight: 600
+                      }}>
+                        Benchmark Leader
+                      </span>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginTop: 12 }}>
+                      <div>
+                        <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>MAE (Mean Abs Error)</div>
+                        <div style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)', marginTop: 2 }}>
+                          {benchmark?.models?.find(m => m.model_name.includes('Naive'))?.mae?.toFixed(3) || '3.966'} <span style={{ fontSize: '0.75rem', fontWeight: 500 }}>kWh</span>
+                        </div>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>RMSE</div>
+                        <div style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)', marginTop: 2 }}>
+                          {benchmark?.models?.find(m => m.model_name.includes('Naive'))?.rmse?.toFixed(3) || '6.375'} <span style={{ fontSize: '0.75rem', fontWeight: 500 }}>kWh</span>
+                        </div>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>sMAPE Error</div>
+                        <div style={{ fontSize: '0.92rem', fontWeight: 600, color: '#06b6d4', marginTop: 2 }}>
+                          {benchmark?.models?.find(m => m.model_name.includes('Naive'))?.smape?.toFixed(1) || '41.96'}%
+                        </div>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>Training Latency</div>
+                        <div style={{ fontSize: '0.92rem', fontWeight: 600, color: 'var(--text-secondary)', marginTop: 2 }}>
+                          {benchmark?.models?.find(m => m.model_name.includes('Naive'))?.training_time_sec !== undefined ? `${benchmark.models.find(m => m.model_name.includes('Naive')).training_time_sec}s` : '0.00s'}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Quick Launch CTA */}
+              {/* 4. Quick Launch CTA (Kept as requested) */}
               <div className="glass-card" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 20 }}>
                 <div>
                   <h3 style={{ fontSize: '1.15rem', color: 'var(--text-primary)' }}>Ready to generate 7-Day Building Forecasts?</h3>
@@ -589,7 +807,7 @@ export default function App() {
                       </tr>
                     </thead>
                     <tbody>
-                      {benchmark?.models?.map((m, idx) => (
+                      {benchmark?.models?.filter(m => m.status !== 'UNAVAILABLE').map((m, idx) => (
                         <tr key={idx}>
                           <td style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{m.model_name}</td>
                           <td style={{ color: 'var(--accent-blue)' }}>{m.mae !== undefined ? m.mae.toFixed(3) : '—'}</td>
